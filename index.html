@@ -1,88 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
   <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
 </head>
-
-<style>
-  @import url("https://use.typekit.net/lph7ozu.css");
-
-  #container {
-    margin: 20px;
-    width: 450px;
-    height: 80px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
-  }
-
-  #texto {
-    font-family: "transducer", sans-serif;
-    font-weight: 900;
-    position: absolute;
-    z-index: 100;
-    color: #f2f9f8;
-    font-size: 16px;
-    margin: 13px 120px;
-  }
-
-  #textolike {
-    font-family: "transducer", sans-serif;
-    position: absolute;
-    z-index: 9;
-    color: #f2f9f8;
-    font-size: 30px;
-    margin: 30px 118px
-  }
-
-  @keyframes jumpAndPause {
-    0%,
-    20%,
-    75%,
-    100% {
-      transform: translateY(-1px);
-    }
-
-    50% {
-      transform: translateY(1.5px) rotate(7deg);
-    }
-
-    40% {
-      transform: translateY(-10px) rotate(-10deg);
-    }
-
-    60% {
-      transform: translateY(-8px);
-    }
-  }
-
-  #likeicon {
-    margin: 15px 50px;
-    position: absolute;
-    z-index: 100;
-    color: #4b81f6;
-    animation: jumpAndPause 5s cubic-bezier(.77, 0, .11, .99) infinite;
-  }
-
-  #caixadetexto {
-    margin: 30px 5px 25px 20px;
-  }
-
-  #caixadetextourl {
-    margin: 30px 5px 25px 5px;
-  }
-
-  #barra {
-    position: absolute;
-    z-index: 100;
-    top: 20px;
-    left: 40px;
-    width: 2px;
-    height: 20px;
-    transform: rotate(20deg);
-    background: #fffdfe;
-  }
-</style>
-
 <body>
   <div id="likeicon">
     <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="50px" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"
