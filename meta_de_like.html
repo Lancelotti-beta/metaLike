@@ -130,31 +130,37 @@
       }
     });
 
-    // Função para enviar o ID e valor ao backend que irá consultar a API de forma segura
-    function Api(idd, valorr) {
-      fetch('backend_api.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: idd, valor: valorr }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.likeCount) {
-            like = Number(data.likeCount);
-            if (like >= meta) {
-              meta += valorr;
-            }
-            bar.animate(Math.abs((meta - like) / valorr - 1));
-            document.querySelector('#like').innerHTML = like.toLocaleString();
-            document.querySelector('#meta').innerHTML = meta.toLocaleString();
-            document.querySelector("#reiniciar").remove();
+    // Função assíncrona para fazer a requisição ao backend e buscar dados da API do YouTube
+    async function Api(idd, valorr) {
+      try {
+        const response = await fetch('backend_api.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: idd, valor: valorr }),
+        });
+
+        const data = await response.json();
+
+        if (data.likeCount) {
+          like = Number(data.likeCount);
+          if (like >= meta) {
+            meta += valorr;
           }
-        })
-        .catch(err => console.error(err));
+          bar.animate(Math.abs((meta - like) / valorr - 1));
+          document.querySelector('#like').innerHTML = like.toLocaleString();
+          document.querySelector('#meta').innerHTML = meta.toLocaleString();
+          document.querySelector("#reiniciar").remove();
+        } else if (data.error) {
+          console.error("Erro da API: " + data.error);
+        }
+      } catch (err) {
+        console.error("Erro ao buscar dados: " + err);
+      }
     }
 
+    // Função para processar a URL e iniciar a chamada à API
     function urlYoutube() {
       try {
         const url = document.querySelector("#caixadetextourl").value;
