@@ -1,0 +1,190 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
+</head>
+
+<style>
+  @import url("https://use.typekit.net/lph7ozu.css");
+
+  #container {
+    margin: 20px;
+    width: 450px;
+    height: 80px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
+  }
+
+  #texto {
+    font-family: "transducer", sans-serif;
+    font-weight: 900;
+    position: absolute;
+    z-index: 100;
+    color: #f2f9f8;
+    font-size: 16px;
+    margin: 13px 120px;
+  }
+
+  #textolike {
+    font-family: "transducer", sans-serif;
+    position: absolute;
+    z-index: 9;
+    color: #f2f9f8;
+    font-size: 30px;
+    margin: 30px 118px
+  }
+
+  @keyframes jumpAndPause {
+    0%,
+    20%,
+    75%,
+    100% {
+      transform: translateY(-1px);
+    }
+
+    50% {
+      transform: translateY(1.5px) rotate(7deg);
+    }
+
+    40% {
+      transform: translateY(-10px) rotate(-10deg);
+    }
+
+    60% {
+      transform: translateY(-8px);
+    }
+  }
+
+  #likeicon {
+    margin: 15px 50px;
+    position: absolute;
+    z-index: 100;
+    color: #4b81f6;
+    animation: jumpAndPause 5s cubic-bezier(.77, 0, .11, .99) infinite;
+  }
+
+  #caixadetexto {
+    margin: 30px 5px 25px 20px;
+  }
+
+  #caixadetextourl {
+    margin: 30px 5px 25px 5px;
+  }
+
+  #barra {
+    position: absolute;
+    z-index: 100;
+    top: 20px;
+    left: 40px;
+    width: 2px;
+    height: 20px;
+    transform: rotate(20deg);
+    background: #fffdfe;
+  }
+</style>
+
+<body>
+  <div id="likeicon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="50px" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round"
+      class="feather feather-thumbs-up">
+      <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+    </svg>
+  </div>
+
+  <div id="texto">META DE LIKE</div>
+  <div id="textolike"><span id="like"></span> / <span id="meta"></span></div>
+  <div id="container"></div>
+  <div id="reiniciar">
+    <input type="number" id="caixadetexto" placeholder="Meta de likes" />
+    <input type="text" id="caixadetextourl" placeholder="URL do YouTube" />
+    <button id="salvar">Salvar</button>
+  </div>
+
+  <script>
+    // Nova função para validar a URL do YouTube
+    function validarUrlYoutube(url) {
+      const regex = /^https?:\/\/(www\.)?youtube\.com\/watch\?v=([\w-]{11})/;
+      const match = url.match(regex);
+      return match ? match[2] : null;
+    }
+
+    const options = {
+      method: 'GET',
+    };
+
+    var valor = 1000;
+    var id = '';
+    let like = 0;
+    let meta = 0;
+    const bar = new ProgressBar.Line(container, {
+      strokeWidth: 4,
+      easing: 'easeInOut',
+      duration: 1400,
+      trailColor: 'rgba(54,55,70, 0.65)',
+      trailWidth: 20,
+      svgStyle: { width: '100%', height: '100%' },
+      from: { color: '#4ba7f8' },
+      to: { color: '#4ba7f8' },
+      step: (state, bar) => {
+        bar.path.setAttribute('stroke', state.color);
+      }
+    });
+
+    // Função para enviar o ID e valor ao backend que irá consultar a API de forma segura
+    function Api(idd, valorr) {
+      fetch('backend_api.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: idd, valor: valorr }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.likeCount) {
+            like = Number(data.likeCount);
+            if (like >= meta) {
+              meta += valorr;
+            }
+            bar.animate(Math.abs((meta - like) / valorr - 1));
+            document.querySelector('#like').innerHTML = like.toLocaleString();
+            document.querySelector('#meta').innerHTML = meta.toLocaleString();
+            document.querySelector("#reiniciar").remove();
+          }
+        })
+        .catch(err => console.error(err));
+    }
+
+    function urlYoutube() {
+      try {
+        const url = document.querySelector("#caixadetextourl").value;
+        const idVideo = validarUrlYoutube(url);
+        if (!idVideo) {
+          return alert("URL inválida, por favor, insira uma URL válida do YouTube.");
+        }
+
+        const valornumero = Number(document.querySelector("#caixadetexto").value);
+        if (valornumero > 0) {
+          Api(idVideo, valornumero);
+          id = idVideo;
+          valor = valornumero;
+        } else {
+          return alert("Preencha todos os campos corretamente.");
+        }
+      } catch (err) {
+        console.log(err);
+        return alert("Erro ao processar a URL.");
+      }
+    }
+
+    document.querySelector("#salvar").addEventListener("click", urlYoutube);
+
+    setInterval(() => {
+      if (id) {
+        Api(id, valor);
+      }
+    }, 30000); // Aumentado para 30 segundos
+  </script>
+</body>
+
+</html>
