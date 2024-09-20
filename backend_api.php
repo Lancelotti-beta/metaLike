@@ -1,5 +1,5 @@
 <?php
-include 'config.php';  // Configurações e conexão com banco de dados
+include 'config.php';  // Configurações de conexão ao banco de dados
 
 // Recebe os dados enviados pelo frontend
 $postData = json_decode(file_get_contents('php://input'), true);
