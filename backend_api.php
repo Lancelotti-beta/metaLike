@@ -6,7 +6,7 @@ $postData = json_decode(file_get_contents('php://input'), true);
 $videoId = $postData['id'];
 
 // Chave da API armazenada com segurança no backend
-$key = 'SUA_CHAVE_API_SECRETA';
+$key = 'AIzaSyCQUQy4iX-X78byn8ApDIB6s5wCVcfD4mA';
 
 // URL para fazer a requisição à API do YouTube
 $apiUrl = "https://www.googleapis.com/youtube/v3/videos?id=$videoId&part=statistics&key=$key";
