@@ -1,12 +1,11 @@
 import bar, { key } from "./env.js";
 
+let valor = 1000;
 let id = '';
 let like = 0;
 let meta = 0;
 
 async function Api(id, valor) {
-
-  let meta = 1000;
 
   if (!id) {
     console.error("ID do vídeo não foi definido.");
@@ -69,6 +68,6 @@ document.querySelector("#salvar").addEventListener("click", urlYoutube);
 
 window.setInterval(() => {
   if (id) {
-    Api(id, valor);
+    Api(id, meta);
   }
 }, 30000); // 30 segundos para evitar excesso de requisições
