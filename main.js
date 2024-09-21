@@ -47,7 +47,7 @@ function urlYoutube() {
 
     if (!idVideo) {
       return alert(
-        "URL inválida, por favor, insira uma URL válida do YouTube." + options
+        "URL inválida, por favor, insira uma URL válida do YouTube."
       );
     }
 
@@ -63,7 +63,7 @@ function urlYoutube() {
   } catch (err) {
     console.log(err);
 
-    return alert("Erro ao processar a URL.");
+    return alert("Erro ao processar a URL." + options);
   }
 }
 
