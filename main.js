@@ -14,8 +14,8 @@ const bar = new ProgressBar.Line(container, {
 const options = { method: 'GET' };
 const key = "AIzaSyAuh99h6naCct66rk5IPau98JcgbvbUCXc";
 
-var valor = 1000;
-var id = '';
+let meta = 1000;
+let id = '';
 let like = 0;
 let meta = 0;
 
