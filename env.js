@@ -1,4 +1,4 @@
-export const bar = new ProgressBar.Line(container, {
+const bar = new ProgressBar.Line(container, {
   strokeWidth: 4,
   easing: 'easeInOut',
   duration: 1400,
@@ -12,5 +12,11 @@ export const bar = new ProgressBar.Line(container, {
   }
 });
 
-export const options = { method: 'GET' };
-export const key = "AIzaSyAuh99h6naCct66rk5IPau98JcgbvbUCXc";
+const options = { method: 'GET' };
+const key = "AIzaSyAuh99h6naCct66rk5IPau98JcgbvbUCXc";
+
+export {
+  bar,
+  options,
+  key
+}
