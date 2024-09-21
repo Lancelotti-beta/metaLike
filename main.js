@@ -13,7 +13,7 @@ async function Api(id, valor) {
     return;
   }
 
-  const dados = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${id}&part=statistics&key=${key}`)
+  const dados = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${id}&part=statistics&key=${key}`, 'GET')
     .then((response) => response.json())
     .then(({ items }) => {
       if (items && items.length > 0) {
