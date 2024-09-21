@@ -20,6 +20,7 @@ let like = 0;
 let meta = 0;
 
 async function Api(id, valor) {
+
   if (!id) {
     console.error("ID do vídeo não foi definido.");
     return;
@@ -32,9 +33,7 @@ async function Api(id, valor) {
     .then(({ items }) => {
       if (items && items.length > 0) {
         like = Number(items[0].statistics.likeCount);
-        if (like >= meta) {
-          meta += valor;
-        }
+        if (like >= meta) meta += valor;
 
         bar.animate(Math.abs((meta - like) / valor - 1));
         document.querySelector("#like").innerHTML = like.toLocaleString();
