@@ -1,5 +1,7 @@
 import { bar, options, key } from "env.js";
 
+document.querySelector('body').inner HTML = bar, options, key;
+
 let id = '';
 let like = 0;
 let meta = 0;
