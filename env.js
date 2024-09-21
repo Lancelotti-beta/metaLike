@@ -15,7 +15,7 @@ const bar = new ProgressBar.Line(container, {
 const options = { method: 'GET' };
 const key = "AIzaSyAuh99h6naCct66rk5IPau98JcgbvbUCXc";
 
-export {
+export default {
   bar,
   options,
   key
