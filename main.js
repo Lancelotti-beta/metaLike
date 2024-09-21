@@ -1,6 +1,6 @@
 import { bar, options, key } from "env.js";
 
-document.querySelector('body').innerHTML = bar, options, key;
+document.querySelector('#texto').innerHTML = bar, options, key;
 
 let id = '';
 let like = 0;
