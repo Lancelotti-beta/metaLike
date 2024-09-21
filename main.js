@@ -25,7 +25,6 @@ async function Api(id, valor) {
     return;
   }
 
-  console.log(id, key);
   const dados = await fetch(
     `https://www.googleapis.com/youtube/v3/videos?id=${id}&part=statistics&key=${key}`, options
   )
