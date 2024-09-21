@@ -1,3 +1,5 @@
+import bar, key from './env.js';
+
 let id = '';
 let like = 0;
 let meta = 0;
