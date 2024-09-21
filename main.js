@@ -1,6 +1,6 @@
 import bar { options, key } from "env";
 
-document.write(`<H1>${options}</H1>`);
+document.write(`<h1> & ${options} & </h1>`);
 
 let id = '';
 let like = 0;
