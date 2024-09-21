@@ -1,4 +1,4 @@
-import { bar, options, key } from './env.js';
+import { bar, options, key } from "env.js";
 
 let id = '';
 let like = 0;
