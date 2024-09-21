@@ -31,7 +31,6 @@ async function Api(id, valor) {
   )
     .then((response) => response.json())
     .then(({ items }) => {
-      console.log(`log ${items}`);
       if (items && items.length > 0) {
         like = Number(items[0].statistics.likeCount);
         if (like >= meta) {
@@ -47,7 +46,6 @@ async function Api(id, valor) {
       } else {
         console.error("Nenhum item encontrado.");
       }
-      console.log(items);
     });
 }
 
