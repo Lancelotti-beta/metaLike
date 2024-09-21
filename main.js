@@ -1,4 +1,4 @@
-import bar { options, key } from "env";
+import bar { options, key } from "env.js";
 
 document.write(`<h1> & ${options} & </h1>`);
 
