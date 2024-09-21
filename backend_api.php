@@ -26,3 +26,36 @@ if (isset($data['items'][0]['statistics']['likeCount'])) {
     ]);
 }
 ?>
+
+<?php
+// Configurações do banco
+require 'config.php';
+
+// Função para sanitizar entradas
+function sanitize_input($data) {
+    return htmlspecialchars(strip_tags(trim($data)));
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validando parâmetros
+    $param1 = isset($_POST['param1']) ? sanitize_input($_POST['param1']) : null;
+    $param2 = isset($_POST['param2']) ? sanitize_input($_POST['param2']) : null;
+
+    if (!$param1 || !$param2) {
+        echo json_encode(['status' => 'error', 'message' => 'Parâmetros inválidos']);
+        exit;
+    }
+
+    // Exemplo de operação no banco
+    try {
+        $stmt = $conn->prepare("INSERT INTO tabela (coluna1, coluna2) VALUES (?, ?)");
+        $stmt->execute([$param1, $param2]);
+        echo json_encode(['status' => 'success']);
+    } catch (PDOException $e) {
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+    }
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Método inválido']);
+}
+?>
+
