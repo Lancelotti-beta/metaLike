@@ -61,7 +61,7 @@ function urlYoutube() {
   } catch (err) {
     console.log(err);
 
-    return alert("Erro ao processar a URL." + key);
+    return alert("Erro ao processar a URL.");
   }
 }
 
