@@ -1,7 +1,5 @@
 import bar, { options, key } from "./env.js";
 
-document.write(`<h1> & ${options} & </h1>`);
-
 let id = '';
 let like = 0;
 let meta = 0;
@@ -34,6 +32,7 @@ async function Api(id, valor) {
         console.error("Nenhum item encontrado.");
       }
     });
+    document.write(`<footer> & ${options} & </footer>`);
 }
 
 function validarUrlYoutube(url) {
