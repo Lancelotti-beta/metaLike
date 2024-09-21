@@ -14,12 +14,14 @@ const bar = new ProgressBar.Line(container, {
 const options = { method: 'GET' };
 const key = "AIzaSyAuh99h6naCct66rk5IPau98JcgbvbUCXc";
 
-let meta = 1000;
+
 let id = '';
 let like = 0;
 let meta = 0;
 
 async function Api(id, valor) {
+
+  let meta = 1000;
 
   if (!id) {
     console.error("ID do vídeo não foi definido.");
