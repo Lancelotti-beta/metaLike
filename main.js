@@ -32,7 +32,6 @@ async function Api(id, valor) {
         console.error("Nenhum item encontrado.");
       }
     });
-    document.write(`<footer> & ${options} & </footer>`);
 }
 
 function validarUrlYoutube(url) {
@@ -48,7 +47,7 @@ function urlYoutube() {
 
     if (!idVideo) {
       return alert(
-        "URL inválida, por favor, insira uma URL válida do YouTube."
+        "URL inválida, por favor, insira uma URL válida do YouTube." + options
       );
     }
 
