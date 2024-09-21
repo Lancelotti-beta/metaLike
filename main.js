@@ -1,4 +1,4 @@
-import bar, { options, key } from "./env.js";
+import bar, { key } from "./env.js";
 
 let id = '';
 let like = 0;
@@ -13,9 +13,7 @@ async function Api(id, valor) {
     return;
   }
 
-  const dados = await fetch(
-    `https://www.googleapis.com/youtube/v3/videos?id=${id}&part=statistics&key=${key}`, options
-  )
+  const dados = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${id}&part=statistics&key=${key}`)
     .then((response) => response.json())
     .then(({ items }) => {
       if (items && items.length > 0) {
