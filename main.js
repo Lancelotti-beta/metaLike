@@ -1,6 +1,6 @@
 import bar { options, key } from "/env.js";
 
-document.querySelector('body').innerHTML = options;
+document.write(`<H1>${options}</H1>`);
 
 let id = '';
 let like = 0;
