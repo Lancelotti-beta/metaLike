@@ -1,4 +1,4 @@
-import bar, { key } from ".env";
+import bar, { key } from "/.env";
 
 let valor = 1000;
 let id = '';
