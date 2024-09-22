@@ -1,4 +1,4 @@
-import bar, { key } from "variavels.js";
+import bar, { key } from "./variavels.js";
 
 let valor = 1000;
 let id = '';
