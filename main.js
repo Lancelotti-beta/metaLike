@@ -5,6 +5,8 @@ let id = '';
 let like = 0;
 let meta = 0;
 
+console.log(bar, key );
+
 async function Api(id, valor) {
 
   if (!id) {
